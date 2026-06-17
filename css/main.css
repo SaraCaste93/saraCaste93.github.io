@@ -3,14 +3,14 @@
    ======================================== */
 :root {
     --bg: #2f210a;
-    --bg-2: #a6875d;
+    --bg-2: #b69266;
     --bg-3: #d5bca7;
-    --accent: #eabb82;
+    --accent: #e4ae71;
     --accent-dim: rgba(255, 183, 100, 0.15);
     --text: #f6e9cc;
     --text-muted: #ddd6c5;
     --white: #fff7e6;
-    --card-bg: #453618;
+    --card-bg: #403111;
     --card-border: rgba(255, 193, 100, 0.12);
     --radius:      8px;
     --shadow:      0 4px 24px rgba(0, 0, 0, 0.35);
@@ -34,6 +34,10 @@ body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     font-size: 16px;
     line-height: 1.7;
+}
+
+body.menu-open {
+    overflow: hidden;
 }
 
 img {
@@ -132,6 +136,7 @@ section {
     color: var(--white);
 }
 
+/* ===== MENÚ PRINCIPAL (escritorio) ===== */
 nav {
     flex: 1;
 }
@@ -155,7 +160,6 @@ nav ul li a:hover {
     background: var(--accent-dim);
 }
 
-/* CV download link */
 nav ul li:last-child a {
     color: var(--accent);
     border: 1px solid var(--accent);
@@ -169,6 +173,19 @@ nav ul li:last-child a:hover {
     background: var(--accent-dim);
 }
 
+.nav-close {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 28px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* ===== HEADER ACTIONS ===== */
 .header-actions {
     display: flex;
     align-items: center;
@@ -176,7 +193,6 @@ nav ul li:last-child a:hover {
     margin-left: auto;
 }
 
-/* Language toggle */
 .lang-toggle {
     display: flex;
     gap: 4px;
@@ -205,7 +221,6 @@ nav ul li:last-child a:hover {
     color: var(--bg);
 }
 
-/* Social icons in header */
 .social-icons {
     display: flex;
     gap: 12px;
@@ -222,7 +237,6 @@ nav ul li:last-child a:hover {
     transform: translateY(-2px);
 }
 
-/* Mobile menu toggle */
 .menu-toggle {
     display: none;
     background: none;
@@ -242,12 +256,7 @@ nav ul li:last-child a:hover {
     display: flex;
     align-items: center;
     padding-top: 80px;
-    background: linear-gradient(
-            160deg,
-            var(--bg) 0%,
-            var(--bg-2) 60%,
-            var(--bg) 100%
-    );
+    background: linear-gradient(160deg, var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -402,7 +411,7 @@ nav ul li:last-child a:hover {
 }
 
 /* ========================================
-   TIMELINE — Educación & Experiencia
+   TIMELINE
    ======================================== */
 #education {
     background: var(--bg);
@@ -434,7 +443,7 @@ nav ul li:last-child a:hover {
 }
 
 .tl-empty {
-    /* spacer for alternating layout */
+    /* spacer */
 }
 
 .tl-dot {
@@ -493,6 +502,51 @@ nav ul li:last-child a:hover {
     font-size: 14px;
     color: var(--text-muted);
     line-height: 1.7;
+}
+
+/* ========================================
+   TIMELINE SECTIONS (Experiencia / Educación)
+   ======================================== */
+.timeline-section {
+    margin-bottom: 70px;
+}
+
+.timeline-section:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 32px;
+    position: relative;
+    display: inline-block;
+    padding: 0 20px;
+    background: var(--bg);
+    z-index: 2;
+}
+
+.timeline-section {
+    position: relative;
+}
+
+.timeline-section::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: var(--card-border);
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .timeline-section::before {
+        display: none;
+    }
 }
 
 /* ========================================
@@ -557,10 +611,6 @@ nav ul li:last-child a:hover {
     font-family: var(--font-mono);
 }
 
-.about-image {
-    position: relative;
-}
-
 .about-image img {
     border-radius: var(--radius);
     width: 100%;
@@ -574,7 +624,7 @@ nav ul li:last-child a:hover {
 }
 
 /* ========================================
-   FOOTER / CONTACT
+   FOOTER
    ======================================== */
 footer {
     background: var(--bg);
@@ -670,120 +720,145 @@ footer {
 }
 
 /* ========================================
-   RESPONSIVE
+   RESPONSIVE — MÓVIL
    ======================================== */
-@media (max-width: 1024px) {
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
 @media (max-width: 768px) {
     section {
         padding: 72px 0;
     }
 
-    /* Header mobile */
     .header-inner {
         flex-wrap: wrap;
         padding: 14px 20px;
         gap: 12px;
     }
 
-    nav {
-        order: 3;
-        width: 100%;
-        display: none;
-    }
-
-    nav.open {
-        display: block;
-    }
-
-    nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-        padding: 8px 0;
-    }
-
-    nav ul li a {
-        display: block;
-        padding: 10px 14px;
-        font-size: 15px;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
     .lang-toggle {
         display: none;
     }
 
-    /* Hero */
+    .menu-toggle {
+        display: block;
+        z-index: 102;
+    }
+
+    /* Menú slide lateral */
+    nav {
+        position: fixed;
+        top: 0;
+        right: -320px;
+        width: 300px;
+        height: 100vh;
+        background: var(--bg);
+        padding: 80px 24px 24px;
+        transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        z-index: 101;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.5);
+        overflow-y: auto;
+        border-left: 1px solid var(--card-border);
+    }
+
+    nav.open {
+        right: 0;
+    }
+
+    /* Overlay oscuro (pseudoelemento) */
+    nav::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.6);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+        z-index: -1;
+    }
+
+    nav.open::before {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-close {
+        display: block;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 103;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 0;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 12px 16px;
+        font-size: 16px;
+        border-radius: var(--radius);
+        text-align: left;
+    }
+
+    nav ul li:last-child a {
+        border: 1px solid var(--accent);
+        text-align: center;
+        margin-top: 12px;
+    }
+
     .hero-content h1 {
         font-size: 36px;
     }
-
     .hero-content .subtitle {
         font-size: 16px;
     }
 
-    /* Skills */
     .skills-grid {
         grid-template-columns: 1fr;
     }
 
-    /* Timeline mobile: single column */
     .timeline-line {
         left: 20px;
     }
-
     .tl-item {
         grid-template-columns: 40px 1fr;
         grid-template-areas: "dot card";
     }
-
     .tl-item .tl-empty {
         display: none;
     }
-
-    /* Items donde el empty va al principio */
     .tl-item:nth-child(even) {
         grid-template-areas: "dot card";
     }
-
     .tl-dot {
         grid-area: dot;
         justify-content: center;
     }
-
     .tl-card {
         grid-area: card;
     }
-
     .tl-empty {
         display: none;
     }
 
-    /* About */
     .about-grid {
         grid-template-columns: 1fr;
         gap: 40px;
     }
-
     .about-image {
         order: -1;
         max-width: 320px;
         margin: 0 auto;
     }
-
     .about-stats {
         flex-wrap: wrap;
     }
 
-    /* Footer */
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 32px;
@@ -794,78 +869,19 @@ footer {
     .hero-btns {
         flex-direction: column;
     }
-
     .btn {
         justify-content: center;
     }
-
     .about-stats {
         gap: 12px;
     }
 }
-/* ========================================
-   TIMELINE SECTIONS (Experiencia / Educación)
-   ======================================== */
-.timeline-section {
-    margin-bottom: 70px;
-}
-
-.timeline-section:last-child {
-    margin-bottom: 0;
-}
-
-.timeline-section-title {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--white);
-    text-align: center;
-    margin-bottom: 32px;
-    position: relative;
-    display: inline-block;
-    padding: 0 20px;
-    background: var(--bg); /* Fondo para tapar la línea decorativa */
-    z-index: 2;
-}
-
-/* Contenedor para centrar el título y añadir una línea decorativa */
-.timeline-section {
-    position: relative;
-}
-
-.timeline-section::before {
-    content: '';
-    position: absolute;
-    top: 20px; /* Ajusta según la altura del título */
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: var(--card-border);
-    z-index: 1;
-}
-
-/* En móviles la línea decorativa puede molestar, la ocultamos */
-@media (max-width: 768px) {
-    .timeline-section::before {
-        display: none;
-    }
-}
 
 /* ========================================
-   SCROLL ANIMATIONS (reducidas si prefiere)
+   SCROLL ANIMATIONS (opcional)
    ======================================== */
-@media (prefers-reduced-motion: no-preference) {
-    /* Ya no ocultamos nada al cargar, solo aplicamos transiciones suaves si se añade la clase .visible */
-    .skill-card,
-    .tl-card,
-    .stat-card {
-        /* Sin opacity: 0 ni transform. Siempre visibles. */
-        transition: transform 0.5s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    /* La clase .visible solo se usa para animaciones extra, pero no es necesaria para la visibilidad */
-    .skill-card.visible,
-    .tl-card.visible,
-    .stat-card.visible {
-        /* No hacemos nada especial, ya son visibles por defecto */
-    }
+.skill-card,
+.tl-card,
+.stat-card {
+    transition: transform 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
